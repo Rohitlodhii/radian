@@ -1,3 +1,5 @@
+"use client"
+
 import Features from "@/components/core/feature";
 import Hero from "@/components/core/Hero";
 import Language from "@/components/core/language";
