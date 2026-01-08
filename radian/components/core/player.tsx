@@ -1,11 +1,23 @@
 import React from 'react'
+import { HeroVideoDialog } from '@/components/ui/hero-video-dialog'
 
 const VideoPlayer = () => {
   return (
-    <div className='h-[70vh]  w-full px-20 '>
-    <div className='border border-border rounded-lg w-full h-full bg-zinc-600'>
-
-    </div>
+    <div className='h-full w-full px-20'>
+      <HeroVideoDialog
+        className="hidden dark:block w-full h-full"
+        animationStyle="from-center"
+        videoSrc="https://www.youtube.com/embed/BZPP5uZf1Fc?si=4rb-zSdDkVK9qxxb"
+        thumbnailSrc="/image.png"
+        thumbnailAlt="Hero Video"
+      />
+      <HeroVideoDialog
+        className=" dark:hidden w-full h-full"
+        animationStyle="from-center"
+        videoSrc="https://www.youtube.com/embed/BZPP5uZf1Fc?si=4rb-zSdDkVK9qxxb"
+        thumbnailSrc="/heroimage.png"
+        thumbnailAlt="Hero Video"
+      />
     </div>
   )
 }
