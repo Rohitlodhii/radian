@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from '../ui/button'
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
@@ -25,8 +23,8 @@ const Hero = () => {
           </Button>
         </DownloadDialog>
       </div>
-      </div>
     </div>
+  </div>
   )
 }
 

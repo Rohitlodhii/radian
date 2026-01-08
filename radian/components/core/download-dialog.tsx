@@ -47,7 +47,7 @@ export function DownloadDialog({ children }: DownloadDialogProps) {
 
       // Close dialog and redirect
       setOpen(false)
-      router.push('/')
+      window.open('https://github.com/Rohitlodhii/radian/releases/tag/Release', '_blank')
       
       // Reset form
       setName('')
