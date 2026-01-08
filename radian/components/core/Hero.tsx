@@ -1,7 +1,10 @@
+'use client'
+
 import { Button } from '../ui/button'
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { BackgroundRippleEffect } from '../ui/background-ripple-effect'
+import { DownloadDialog } from './download-dialog'
 
 
 const Hero = () => {
@@ -16,12 +19,12 @@ const Hero = () => {
         Built to run efficiently on everyday computers — no GPU required, no cloud required, no restrictions with multiple languages.</p>
       </div>
       <div className='flex flex-col '>
-       
-          <Button className='h-12 max-w-fit cursor-pointer'>
+          <DownloadDialog>
+            <Button className='h-12 max-w-fit cursor-pointer'>
               <span>Download for Windows</span>
               <Image src={'/winicon.png'} alt='windows' className='invert-100 dark:invert-0' width={20} height={20}/>
-          </Button>
-   
+            </Button>
+          </DownloadDialog>
       </div>
     </div>
   </div>

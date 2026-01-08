@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -24,7 +23,6 @@ export function DownloadDialog({ children }: DownloadDialogProps) {
   const [name, setName] = useState('')
   const [usage, setUsage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,12 +35,17 @@ export function DownloadDialog({ children }: DownloadDialogProps) {
     setIsSubmitting(true)
 
     try {
+      // Check if Firebase is properly initialized
+      if (!db) {
+        throw new Error('Firebase not initialized')
+      }
+
       // Save to Firebase Firestore
       await addDoc(collection(db, 'downloads'), {
         name: name.trim(),
         usage: usage.trim(),
         timestamp: new Date(),
-        userAgent: navigator.userAgent,
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'Unknown',
       })
 
       // Close dialog and redirect
@@ -54,7 +57,10 @@ export function DownloadDialog({ children }: DownloadDialogProps) {
       setUsage('')
     } catch (error) {
       console.error('Error saving data:', error)
-      alert('Failed to submit form. Please try again.')
+      // Still allow download even if Firebase fails
+      setOpen(false)
+      window.open('https://github.com/Rohitlodhii/radian/releases/tag/Release', '_blank')
+      alert('Download started! (Note: Feedback submission failed)')
     } finally {
       setIsSubmitting(false)
     }
