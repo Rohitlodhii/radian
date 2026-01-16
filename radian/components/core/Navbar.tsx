@@ -16,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className='flex items-center gap-2'>
             <ModeToggle/>
-            <Button onClick={()=>router.push('https://github.com/Rohitlodhii/radian/releases/tag/Release')} className='rounded-xl flex items-center gap-2 justify-center'>
+            <Button onClick={()=>router.push('https://github.com/Rohitlodhii/radian/releases/tag/update')} className='rounded-xl flex items-center gap-2 justify-center'>
                 <ArrowDown/><span>Download</span>
             </Button>
         </div>
