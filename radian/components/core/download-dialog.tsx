@@ -50,7 +50,7 @@ export function DownloadDialog({ children }: DownloadDialogProps) {
 
       // Close dialog and redirect
       setOpen(false)
-      window.open('https://github.com/Rohitlodhii/radian/releases/tag/Release', '_blank')
+      window.open('https://github.com/Rohitlodhii/radian/releases/tag/update', '_blank')
       
       // Reset form
       setName('')
@@ -59,7 +59,7 @@ export function DownloadDialog({ children }: DownloadDialogProps) {
       console.error('Error saving data:', error)
       // Still allow download even if Firebase fails
       setOpen(false)
-      window.open('https://github.com/Rohitlodhii/radian/releases/tag/Release', '_blank')
+      window.open('https://github.com/Rohitlodhii/radian/releases/tag/update', '_blank')
       alert('Download started! (Note: Feedback submission failed)')
     } finally {
       setIsSubmitting(false)
