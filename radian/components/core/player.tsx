@@ -3,7 +3,7 @@ import { HeroVideoDialog } from '@/components/ui/hero-video-dialog'
 
 const VideoPlayer = () => {
   return (
-    <div className='h-full w-full px-20'>
+    <div className='h-full w-full md:px-24 '>
       <HeroVideoDialog
         className="hidden dark:block w-full h-full"
         animationStyle="from-center"

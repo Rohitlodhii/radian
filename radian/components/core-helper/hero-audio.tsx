@@ -77,7 +77,7 @@ const HeroCard = ({ image, voice, name, autoplay = false, autoplayKey = 0 }: Her
         }, [togglePlay]);
 
         return (
-          <div className='w-96 h-96 overflow-hidden relative flex flex-col items-center justify-center gap-6  rounded-lg border border-border bg-card'>
+          <div className='w-80 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 overflow-hidden relative flex flex-col items-center justify-center gap-6 rounded-lg border border-border bg-card'>
             {/* Avatar Image */}
             <div className=' w-full h-full flex items-center justify-center   overflow-hidden'>
               <Image
@@ -86,7 +86,15 @@ const HeroCard = ({ image, voice, name, autoplay = false, autoplayKey = 0 }: Her
               
                 height={100}
                 width={300}
-                className='object-cover dark:grayscale-100'
+                className='object-cover hidden md:block dark:grayscale-100'
+              />
+              <Image
+                src={image}
+                alt={`${name} Avatar`}
+              
+                height={70}
+                width={150}
+                className='object-cover md:hidden dark:grayscale-100'
               />
             </div>
 
