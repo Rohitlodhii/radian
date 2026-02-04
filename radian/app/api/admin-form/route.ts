@@ -12,6 +12,13 @@ import {
 
 const COLLECTION_NAME = "adminForms";
 
+// 👇 adjust later if you want to restrict origin
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*", // or "http://localhost:3000"
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
 type AdminFormPayload = {
   version: string;
   note: string;
@@ -34,6 +41,15 @@ function validatePayload(body: any): AdminFormPayload {
   return { version, note, link, title };
 }
 
+/* -------------------- OPTIONS (CORS PREFLIGHT) -------------------- */
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: CORS_HEADERS,
+  });
+}
+
+/* -------------------- POST -------------------- */
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -44,19 +60,27 @@ export async function POST(request: Request) {
       createdAt: serverTimestamp(),
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { success: true },
+      { headers: CORS_HEADERS }
+    );
   } catch (error: any) {
     console.error("Error saving admin form data:", error);
+
     return NextResponse.json(
       {
         success: false,
         error: error?.message ?? "Failed to save data",
       },
-      { status: 400 }
+      {
+        status: 400,
+        headers: CORS_HEADERS,
+      }
     );
   }
 }
 
+/* -------------------- GET -------------------- */
 export async function GET() {
   try {
     const q = query(
@@ -70,7 +94,7 @@ export async function GET() {
     if (snapshot.empty) {
       return NextResponse.json(
         { success: false, error: "No data found" },
-        { status: 404 }
+        { status: 404, headers: CORS_HEADERS }
       );
     }
 
@@ -79,20 +103,26 @@ export async function GET() {
       createdAt?: { seconds: number; nanoseconds: number };
     };
 
-    return NextResponse.json({
-      success: true,
-      id: doc.id,
-      data,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        id: doc.id,
+        data,
+      },
+      { headers: CORS_HEADERS }
+    );
   } catch (error: any) {
     console.error("Error fetching latest admin form data:", error);
+
     return NextResponse.json(
       {
         success: false,
         error: error?.message ?? "Failed to fetch data",
       },
-      { status: 500 }
+      {
+        status: 500,
+        headers: CORS_HEADERS,
+      }
     );
   }
 }
-
